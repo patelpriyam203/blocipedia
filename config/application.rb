@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
-require "rails"
+require "rails/all"
+require "devise"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -31,5 +32,6 @@ module Blocipedia
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.autoload_paths << File.join(config.root, "lib")
   end
 end
