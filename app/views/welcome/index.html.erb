@@ -27,6 +27,13 @@
   <div class="col-md-2"></div>
   <div class="col-md-5 well">
     <h3>Create Private Wikis!</h3>
-    <p>Premium Plan Option</p>
+    <% if current_user && current_user.premium? %>
+      <h4>Welcome Premium Member!</h4>
+    <% elsif current_user && current_user.standard? %>
+      <p>Click here to upgrade to our Premium Plan Option!</p>
+      <%= link_to "Premium Membership", new_charges_path, :class => 'btn btn-primary' %>
+    <% else %>
+      <p>Premium Plan Option for registered users!</p>
+    <% end %>
   </div>
 </div>

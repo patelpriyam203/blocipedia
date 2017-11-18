@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # get 'charges/new'
+  #
+  # get 'charges/create'
+  #
+  # get 'charges/edit'
+
   # get "wikis/index"
   #
   # get "wikis/show"
@@ -10,6 +16,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :wikis
+
+  resource :charges, only: [:new, :create, :edit]
 
   get 'about' => 'welcome#about'
 
