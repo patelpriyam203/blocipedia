@@ -8,8 +8,16 @@
 </div>
 
 <div class="col-md-4">
+  <%= link_to "Back to Wikis", wikis_path, class: 'btn btn-info' %>
   <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
+
   <% if policy(@wiki).destroy? %>
     <%= link_to "Delete Wiki", @wiki, method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure you want to delete this Wiki?'} %>
+  <% end %>
+
+  <% if @wiki.private %>
+    <% if Collaborator.exists?(wiki_id: @wiki) %>
+      <%= render partial: 'collaborators/users', locals: { wiki: @wiki, collaborators: @collaborators } %>
+    <% end %>
   <% end %>
 </div>

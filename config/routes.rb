@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'collaborators/new'
+
   # get 'charges/new'
   #
   # get 'charges/create'
@@ -18,6 +20,10 @@ Rails.application.routes.draw do
   resources :wikis
 
   resource :charges, only: [:new, :create, :edit]
+
+  resources :wikis do
+    resources :collaborators, only: [:new, :create, :destroy]
+  end
 
   get 'about' => 'welcome#about'
 
